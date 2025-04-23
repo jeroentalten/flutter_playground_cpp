@@ -2,6 +2,7 @@ import 'dart:ffi';
 import 'dart:io';
 
 import 'package:ffi/ffi.dart';
+
 import 'flutter_playground_cpp_bindings_generated.dart';
 
 const String _libName = 'flutter_playground_cpp';
@@ -12,7 +13,8 @@ final DynamicLibrary _dylib = () {
     return DynamicLibrary.open('$_libName.framework/$_libName');
   }
   if (Platform.isAndroid || Platform.isLinux) {
-    return DynamicLibrary.open('lib$_libName.so');
+    return DynamicLibrary.open(
+        '/home/jeroentissink/IdeaProjects/flutter_playground_cpp/example/build/linux/x64/debug/bundle/lib/libflutter_playground_cpp.so');
   }
   if (Platform.isWindows) {
     return DynamicLibrary.open('$_libName.dll');

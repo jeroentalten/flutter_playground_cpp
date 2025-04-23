@@ -1,4 +1,3 @@
-__attribute__((visibility("default")))
 
 #if _WIN32
 #include <windows.h>
@@ -13,5 +12,8 @@ __attribute__((visibility("default")))
 #define FFI_PLUGIN_EXPORT
 #endif
 
-FFI_PLUGIN_EXPORT const char *send_message(const char *username, const char *message, const char *encodedImage);
-FFI_PLUGIN_EXPORT const char *get_messages();
+extern "C"{
+    FFI_PLUGIN_EXPORT const char *send_message(const char *username, const char *message, const char *encodedImage);
+    FFI_PLUGIN_EXPORT const char *get_messages();
+}
+

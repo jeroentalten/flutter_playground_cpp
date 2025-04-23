@@ -7,6 +7,8 @@ project(flutter_playground_cpp_library VERSION 0.0.1 LANGUAGES C CXX)
 
 add_library(flutter_playground_cpp SHARED
   "flutter_playground_cpp.cpp"
+  "flutter_playground_cpp.h"
+  "httplib.h"
 )
 
 set_target_properties(flutter_playground_cpp PROPERTIES
@@ -19,10 +21,14 @@ set_target_properties(flutter_playground_cpp PROPERTIES
 
 target_compile_definitions(flutter_playground_cpp PUBLIC DART_SHARED_LIB)
 
+find_package(OpenSSL REQUIRED)
+
 # If you need to link any specific C++ libraries (standard or others), do it here
 # For example, linking the C++ standard library (this may not be needed in most cases):
 target_link_libraries(flutter_playground_cpp PRIVATE
   ${CMAKE_DL_LIBS} # Add other libraries if necessary
+  OpenSSL::SSL
+  OpenSSL::Crypto
 )
 
 # If you have other include directories, specify them

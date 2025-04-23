@@ -18,14 +18,12 @@ httplib::Headers headers = {
     { TOKEN_HEADER, SECURITY_TOKEN }
 };
 
-extern "C" {
-
 // Function to send a text message with a username
-const char* send_message(const char* username, const char* message, const char* encodedImage) {
+FFI_PLUGIN_EXPORT const char* send_message(const char* username, const char* message, const char* encodedImage) {
     static std::string response;
     response.clear();
 
-    if (encodedImage == nullptr {
+    if (encodedImage == nullptr) {
         encodedImage = "";
     }
 
@@ -46,7 +44,7 @@ const char* send_message(const char* username, const char* message, const char* 
     return response.c_str();
 }
 
-const char* get_messages() {
+FFI_PLUGIN_EXPORT const char* get_messages() {
     auto res = cli.Get("/messages", headers);
 
     if (res && res->status == 200) {
@@ -56,4 +54,4 @@ const char* get_messages() {
     }
 }
 
-}
+
