@@ -41,6 +41,15 @@ String callSendMessage(String username, String message, String encodedImage) {
   return result;
 }
 
+String callGetMessages() {
+  final bindings = FlutterPlaygroundCppBindings(_dylib);
+
+  final resultPtr = bindings.get_messages().cast<Utf8>();
+  final result = resultPtr.toDartString();
+
+  return result;
+}
+
 int main() {
   final result = callSendMessage("Henk", "Heellangbericht", "-1");
   print(result);

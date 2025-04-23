@@ -18,7 +18,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    sumResult = callSendMessage("Harry", "HOI HAGRID!!!!!", "sudo rm -rf");
+    sumResult = callGetMessages();
   }
 
   @override
