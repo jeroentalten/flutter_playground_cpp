@@ -6,6 +6,8 @@
 #define CPPHTTPLIB_OPENSSL_SUPPORT
 #include "httplib.h"
 
+#include "chat_api.h"
+
 #define SERVER_URL "https://chat.tissink.me"
 
 const std::string TOKEN_HEADER = "key";
@@ -19,7 +21,7 @@ httplib::Headers headers = {
 extern "C" {
 
 // Function to send a text message with a username
-const char* send_message(const char* username, const char* message, const char* encodedImage = "") {
+const char* send_message(const char* username, const char* message, const char* encodedImage) {
     static std::string response;
     response.clear();
 

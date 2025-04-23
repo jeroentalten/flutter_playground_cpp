@@ -7,6 +7,7 @@ project(flutter_playground_cpp_library VERSION 0.0.1 LANGUAGES C)
 
 add_library(flutter_playground_cpp SHARED
   "flutter_playground_cpp.c"
+  "chat/chat_api.cpp"
 )
 
 set_target_properties(flutter_playground_cpp PROPERTIES
