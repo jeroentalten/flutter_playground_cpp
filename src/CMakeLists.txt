@@ -49,20 +49,19 @@ find_package(OpenSSL REQUIRED)
 
 # If you need to link any specific C++ libraries (standard or others), do it here
 # For example, linking the C++ standard library (this may not be needed in most cases):
- IF(APPLE)
-target_link_libraries(flutter_playground_cpp PRIVATE
-  ${CMAKE_DL_LIBS} # Add other libraries if necessary
-  OpenSSL::SSL
-  OpenSSL::Crypto
-  c++abi
-)
+IF(APPLE)
+    target_link_libraries(flutter_playground_cpp PRIVATE
+      ${CMAKE_DL_LIBS} # Add other libraries if necessary
+      OpenSSL::SSL
+      OpenSSL::Crypto
+      c++abi
+    )
 ELSE()
-target_link_libraries(flutter_playground_cpp PRIVATE
-  ${CMAKE_DL_LIBS} # Add other libraries if necessary
-  OpenSSL::SSL
-  OpenSSL::Crypto
-)
-
+    target_link_libraries(flutter_playground_cpp PRIVATE
+      ${CMAKE_DL_LIBS} # Add other libraries if necessary
+      OpenSSL::SSL
+      OpenSSL::Crypto
+    )
 ENDIF()
 
 IF(APPLE)
