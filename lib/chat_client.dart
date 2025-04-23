@@ -29,14 +29,14 @@ String callSendMessage(String username, String message, String encodedImage) {
   final messagePtr = message.toNativeUtf8().cast<Char>();
   final imagePtr = encodedImage.toNativeUtf8().cast<Char>();
 
-  final resultPtr =
-      bindings.send_message(usernamePtr, messagePtr, imagePtr).cast<Utf8>();
+  final resultPtr = bindings
+      .send_message(
+        usernamePtr,
+        messagePtr,
+        imagePtr,
+      )
+      .cast<Utf8>();
   final result = resultPtr.toDartString();
-
-  calloc.free(usernamePtr);
-  calloc.free(messagePtr);
-  calloc.free(imagePtr);
-  calloc.free(resultPtr);
 
   return result;
 }
