@@ -18,10 +18,17 @@ Flutter playground CPP demo
   # paths, so Classes contains a forwarder C file that relatively imports
   # `../src/*` so that the C sources can be shared among all target platforms.
   s.source           = { :path => '.' }
-  s.source_files = 'Classes/**/*'
+  s.source_files = 'Classes/**/*.{h,mm,cpp}'
   s.dependency 'FlutterMacOS'
 
   s.platform = :osx, '10.11'
-  s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
+  s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES',
+   'CLANG_CXX_LANGUAGE_STANDARD' => 'c++20',
+   'CLANG_CXX_LIBRARY' => 'libc++',
+ 'HEADER_SEARCH_PATHS' => '/usr/local/opt/openssl@3/include',
+    'LIBRARY_SEARCH_PATHS' => '/usr/local/opt/openssl@3/lib',
+  'OTHER_LDFLAGS' => '-lssl -lcrypto'
+  }
   s.swift_version = '5.0'
+
 end

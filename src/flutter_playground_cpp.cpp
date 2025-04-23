@@ -38,7 +38,11 @@ FFI_PLUGIN_EXPORT const char* send_message(const char* username, const char* mes
     if (res) {
         response = res->body;
     } else {
-        response = "Error: Failed to send request";
+        response = "Error: Request failed\n";
+
+         auto err = res.error();
+         response = httplib::to_string(err);
+
     }
 
     return response.c_str();

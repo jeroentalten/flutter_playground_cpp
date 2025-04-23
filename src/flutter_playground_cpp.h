@@ -11,9 +11,11 @@
 #else
 #define FFI_PLUGIN_EXPORT
 #endif
-
+#ifdef __cplusplus
 extern "C"{
+#endif
     FFI_PLUGIN_EXPORT const char *send_message(const char *username, const char *message, const char *encodedImage);
-    FFI_PLUGIN_EXPORT const char *get_messages();
+    FFI_PLUGIN_EXPORT const char *get_messages(void);
+#ifdef __cplusplus
 }
-
+#endif

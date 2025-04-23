@@ -12,11 +12,16 @@ add_library(flutter_playground_cpp SHARED
 )
 
 set_target_properties(flutter_playground_cpp PROPERTIES
-  CXX_STANDARD 20  # Set C++14 or adjust according to your needs
+  CXX_STANDARD 17  # Set C++14 or adjust according to your needs
   CXX_STANDARD_REQUIRED YES
   CXX_EXTENSIONS NO
   PUBLIC_HEADER flutter_playground_cpp.h
   OUTPUT_NAME "flutter_playground_cpp"
+)
+
+set_source_files_properties(
+  flutter_playground_cpp.cpp
+  PROPERTIES LANGUAGE CXX
 )
 
 target_compile_definitions(flutter_playground_cpp PUBLIC DART_SHARED_LIB)
@@ -48,6 +53,12 @@ target_link_libraries(flutter_playground_cpp PRIVATE
   ${CMAKE_DL_LIBS} # Add other libraries if necessary
   OpenSSL::SSL
   OpenSSL::Crypto
+  c++abi
+)
+
+target_compile_options(flutter_playground_cpp PRIVATE
+  -std=c++17            # Enforce C++17 standard
+  -stdlib=libc++        # Use libc++ for macOS (important for C++ code)
 )
 
 # If you have other include directories, specify them
