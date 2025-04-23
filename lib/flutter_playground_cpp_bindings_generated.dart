@@ -27,43 +27,33 @@ class FlutterPlaygroundCppBindings {
           lookup)
       : _lookup = lookup;
 
-  /// A very short-lived native function.
-  ///
-  /// For very short-lived functions, it is fine to call them on the main isolate.
-  /// They will block the Dart execution while running the native function, so
-  /// only do this for native functions which are guaranteed to be short-lived.
-  int sum(
-    int a,
-    int b,
+  ffi.Pointer<ffi.Char> send_message(
+    ffi.Pointer<ffi.Char> username,
+    ffi.Pointer<ffi.Char> message,
+    ffi.Pointer<ffi.Char> encodedImage,
   ) {
-    return _sum(
-      a,
-      b,
+    return _send_message(
+      username,
+      message,
+      encodedImage,
     );
   }
 
-  late final _sumPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Int)>>('sum');
-  late final _sum = _sumPtr.asFunction<int Function(int, int)>();
+  late final _send_messagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('send_message');
+  late final _send_message = _send_messagePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
-  /// A longer lived native function, which occupies the thread calling it.
-  ///
-  /// Do not call these kind of native functions in the main isolate. They will
-  /// block Dart execution. This will cause dropped frames in Flutter applications.
-  /// Instead, call these native functions on a separate isolate.
-  int sum_long_running(
-    int a,
-    int b,
-  ) {
-    return _sum_long_running(
-      a,
-      b,
-    );
+  ffi.Pointer<ffi.Char> get_messages() {
+    return _get_messages();
   }
 
-  late final _sum_long_runningPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Int)>>(
-          'sum_long_running');
-  late final _sum_long_running =
-      _sum_long_runningPtr.asFunction<int Function(int, int)>();
+  late final _get_messagesPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>(
+          'get_messages');
+  late final _get_messages =
+      _get_messagesPtr.asFunction<ffi.Pointer<ffi.Char> Function()>();
 }

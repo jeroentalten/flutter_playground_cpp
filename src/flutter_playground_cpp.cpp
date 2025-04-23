@@ -6,7 +6,7 @@
 #define CPPHTTPLIB_OPENSSL_SUPPORT
 #include "httplib.h"
 
-#include "chat_api.h"
+#include "flutter_playground_cpp.h"
 
 #define SERVER_URL "https://chat.tissink.me"
 
@@ -24,6 +24,10 @@ extern "C" {
 const char* send_message(const char* username, const char* message, const char* encodedImage) {
     static std::string response;
     response.clear();
+
+    if (encodedImage == nullptr {
+        encodedImage = "";
+    }
 
     httplib::MultipartFormDataItems items = {
         { "username", username, "", "text/plain" },
@@ -52,18 +56,4 @@ const char* get_messages() {
     }
 }
 
-}
-
-int main() {
-    const char* username = "Dennis";
-    const char* message = "Heehoi!";
-    const char* encodedImage = "<script>alert(\"You've been p0wn3d.\")</script>";
-
-    const char* message_response = send_message(username, message, encodedImage);
-    std::cout << "Message Response: " << message_response << std::endl;
-
-    const char* response = get_messages();
-    std::cout << "Messages: " << response << std::endl;
-
-    return 0;
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:flutter_playground_cpp/flutter_playground_cpp.dart' as flutter_playground_cpp;
+import 'package:flutter_playground_cpp/chat_client.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,14 +15,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late int sumResult;
+  late String sumResult;
   late Future<int> sumAsyncResult;
 
   @override
   void initState() {
     super.initState();
-    sumResult = flutter_playground_cpp.sum(1, 2);
-    sumAsyncResult = flutter_playground_cpp.sumAsync(3, 4);
+    sumResult = callSendMessage("Harry", "HOI HAGRID!!!!!", "sudo rm -rf");
   }
 
   @override
