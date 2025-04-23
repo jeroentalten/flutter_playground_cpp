@@ -21,6 +21,12 @@ set_target_properties(flutter_playground_cpp PROPERTIES
 
 target_compile_definitions(flutter_playground_cpp PUBLIC DART_SHARED_LIB)
 
+IF(WIN32)
+    set(OPENSSL_ROOT_DIR "C:\\Program Files\\FireDaemon OpenSSL 3")
+    set(OPENSSL_INCLUDE_DIR "C:\\Program Files\\FireDaemon OpenSSL 3\\include")
+    set(OPENSSL_LIBRARIES "C:\\Program Files\\FireDaemon OpenSSL 3\\lib")
+ENDIF()
+
 find_package(OpenSSL REQUIRED)
 
 # If you need to link any specific C++ libraries (standard or others), do it here

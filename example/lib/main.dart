@@ -13,12 +13,11 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late String sumResult;
+  String? sumResult;
 
   @override
   void initState() {
     super.initState();
-    sumResult = callSendMessage("Harry", "HOI HAGRID!!!!!", "sudo rm -rf");
   }
 
   @override
@@ -35,6 +34,12 @@ class _MyAppState extends State<MyApp> {
             padding: const EdgeInsets.all(10),
             child: Column(
               children: [
+                ElevatedButton(
+                    onPressed: () {
+                      sumResult = callSendMessage(
+                          "Harry", "HOI HAGRID!!!!!", "sudo rm -rf");
+                    },
+                    child: Text("Hi")),
                 const Text(
                   'This calls a native function through FFI that is shipped as source in the package. '
                   'The native code is built as part of the Flutter Runner build.',
