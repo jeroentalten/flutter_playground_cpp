@@ -27,6 +27,19 @@ IF(WIN32)
     set(OPENSSL_LIBRARIES "C:\\Program Files\\FireDaemon OpenSSL 3\\lib")
 ENDIF()
 
+IF(APPLE)
+    set(OPENSSL_ROOT_DIR "/opt/homebrew/opt/openssl@3")
+    set(OPENSSL_INCLUDE_DIR "/opt/homebrew/opt/openssl@3/include")
+    set(OPENSSL_LIBRARIES "/opt/homebrew/opt/openssl@3/lib")
+ENDIF()
+
+# Linux should find it automagically, if not uncomment
+#IF(UNIX AND NOT APPLE)
+#    set(OPENSSL_ROOT_DIR "/opt/homebrew/opt/openssl@3")
+#    set(OPENSSL_INCLUDE_DIR "/opt/homebrew/opt/openssl@3/include")
+#    set(OPENSSL_LIBRARIES "/opt/homebrew/opt/openssl@3/lib")
+#ENDIF()
+
 find_package(OpenSSL REQUIRED)
 
 # If you need to link any specific C++ libraries (standard or others), do it here
