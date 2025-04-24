@@ -13,8 +13,7 @@ final DynamicLibrary _dylib = () {
     return DynamicLibrary.open('$_libName.framework/$_libName');
   }
   if (Platform.isAndroid || Platform.isLinux) {
-    return DynamicLibrary.open(
-        '/home/jeroentissink/IdeaProjects/flutter_playground_cpp/example/build/linux/x64/debug/bundle/lib/libflutter_playground_cpp.so');
+    return DynamicLibrary.open('/path/to/so/libflutter_playground_cpp.so');
   }
   if (Platform.isWindows) {
     return DynamicLibrary.open('$_libName.dll');
